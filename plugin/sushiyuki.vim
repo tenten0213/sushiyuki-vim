@@ -1,13 +1,13 @@
-function! s:sushi()
+function! s:sushi(type)
 
   let sushiMap = { 'yes': 1, 'no': 2, 'ok': 3, 'thanks': 4, 'thank you': 4, 'gyoku': 4, 'sorry':  5, 'sigh': 6, 'angry': 7, 'no comment': 8, 'cool': 9, 'kappa': 10, 'help': 11, 'what': 12, 'question': 12, 'sleep': 13, 'sleeply': 13, 'oh no': 14, 'love': 15, 'grin': 16, 'bye': 17, 'sneak': 18, 'hide': 19, 'peel': 20, 'hot': 21, 'fail': 22, 'dip': 22, 'too much': 23, 'ikura': 23, 'happy': 24, 'smile': 25, 'boom': 25, 'wat': 26, 'anago': 26, 'tea': 27, 'content': 27, 'agari': 27, 'gari': 28, 'don''t forget': 28, 'wasabi': 29, 'sabi': 29, 'come on': 30, 'c''mon': 30, 'sparkles': 31, 'sweat': 32, 'cry': 33, 'surprised': 34, 'idea': 35, 'sad': 36, 'sob': 36, 'chat': 37, 'phone': 38, 'call': 38, 'hello': 39, 'see you': 40 }
 
   if &ft == 'markdown'
-    let content = '![' . 'yes' . ':](' . 'https://raw.githubusercontent.com/tenten0213/sushiyuki.vim/master/images/' . sushiMap.yes . '.png)'
+    let content = '![' . 'yes' . ':](' . 'https://raw.githubusercontent.com/tenten0213/sushiyuki-vim/master/images/sushiyuki_' . sushiMap[a:type] . '.png)'
   elseif &ft == 'html'
-    let content = '<img src="' . 'https://raw.githubusercontent.com/tenten0213/sushiyuki.vim/master/images/' . sushiMap.yes . '.png' . '" alt="' . 'yes' . '">'
+    let content = '<img src="' . 'https://raw.githubusercontent.com/tenten0213/sushiyuki-vim/master/images/sushiyuki_' . sushiMap[a:type] . '.png' . '" alt="' . 'yes' . '">'
   else
-    let content = 'https://raw.githubusercontent.com/tenten0213/sushiyuki.vim/master/images/' . sushiMap.yes . '.png'
+    let content = 'https://raw.githubusercontent.com/tenten0213/sushiyuki-vim/master/images/sushiyuki_' . sushiMap[a:type] . '.png'
   endif
 
   let line = getline('.')
@@ -33,4 +33,4 @@ if !hasmapto('<Plug>(sushi)')
   silent! map <unique> <leader>sushi <plug>(sushi)
 endif
 
-command! Sushi call s:sushi()
+command! -nargs=* Sushi call s:sushi(<f-args>)
