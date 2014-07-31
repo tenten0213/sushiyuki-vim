@@ -57,9 +57,9 @@ function! s:sushi(type)
         \'see you': 40 }
 
   if &ft == 'markdown'
-    let content = '![' . '寿司ゆき:' . type . ':](' . 'https://raw.githubusercontent.com/tenten0213/sushiyuki-vim/master/images/sushiyuki_' . sushiMap[a:type] . '.png)'
+    let content = '![' . '寿司ゆき:' . a:type . ':](' . 'https://raw.githubusercontent.com/tenten0213/sushiyuki-vim/master/images/sushiyuki_' . sushiMap[a:type] . '.png)'
   elseif &ft == 'html'
-    let content = '<img src="' . 'https://raw.githubusercontent.com/tenten0213/sushiyuki-vim/master/images/sushiyuki_' . sushiMap[a:type] . '.png' . '" alt="' . '寿司ゆき:' . type . '">'
+    let content = '<img src="' . 'https://raw.githubusercontent.com/tenten0213/sushiyuki-vim/master/images/sushiyuki_' . sushiMap[a:type] . '.png' . '" alt="' . '寿司ゆき:' . a:type . '">'
   else
     let content = 'https://raw.githubusercontent.com/tenten0213/sushiyuki-vim/master/images/sushiyuki_' . sushiMap[a:type] . '.png'
   endif
@@ -88,4 +88,3 @@ if !hasmapto('<Plug>(sushi)')
 endif
 
 command! -nargs=* Sushi call s:sushi(<f-args>)
-
